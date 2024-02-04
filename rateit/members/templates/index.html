@@ -54,9 +54,17 @@
         <p class="logo">Rateit</p>
         <p class="text">Log in or Signup to rate images and videos of your friends and family. </p>
         <div class="btnholder">
-            <button class="text">Login</button>
-            <button class="text">Signup</button>
+            <button class="text" onclick="login()">Login</button>
+            <button class="text" onclick="signup()">Signup</button>
         </div>
     </div>
+    <script>
+        function login(){
+            window.open('login/','_self');
+        }
+        function signup(){
+            window.open('signup/','_self');
+        }
+    </script>
 </body>
 </html>
