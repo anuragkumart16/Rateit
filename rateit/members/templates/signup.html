@@ -44,9 +44,12 @@
         margin: 10px 10px;
         width: 120px;
     }
-
+    input{
+        padding: 10px 10px;
+        margin: 5px 5px;
+    }
     button {
-        margin-bottom: 10px;
+        margin: 5px 5px;
         padding: 10px 10px;
         width: 120px;
         background-color: white;
@@ -58,13 +61,25 @@
         background-color: black;
         color: white;
     }
+    #namearea{
+        display: none;
+    }
+    #contactarea{
+        display: none;
+    }
+    #usernamearea{
+        display: none;
+    }
+    #passwordarea{
+        display: none;
+    }
 </style>
 
 <body>
     <div class="container">
         <h1 class="logo">Rateit</h1>
-        <div class="displayarea">
-            <p>Select your Date Of Birth</p>
+        <div class="displayarea" id="datearea">
+            <p class="text">Select your Date Of Birth</p>
             <!-- year -->
             <select name="year" id="year" onchange="handleyearchange()">
                 <option value=1950> 1950 </option>
@@ -198,6 +213,24 @@
             <button onclick="dob()" disabled id="submit">Submit</button>
             <button onclick="clean()">Clear</button>
         </div>
+        <div class="displayarea" id="namearea">
+            <input type="text" name="first_name" placeholder="Enter your First Name" id="first_name">
+            <input type="text" name="last_name" placeholder="Enter yout Last Name" id="last_name">
+            <button onclick="namesubmit()">Submit</button>
+        </div>
+        <div class="displayarea" id="contactarea">
+            <input type="tel" name="phoneno" id="phoneno" placeholder="Enter your contact Number">
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <button onclick="contactubmit()">Submit</button>
+        </div>
+        <div class="displayarea" id="usernamearea">
+            <input type="text" placeholder="Create a username" id="username" name="username">
+            <button onclick="usernamesubmit()">Submit</button>
+        </div>
+        <div class="displayarea" id="passwordarea">
+            <input type="password" name="password" id="password" placeholder="Enter Your password">
+            <button onclick="passwordsubmit()" >Submit</button>
+        </div>
     </div>
     <script>
         function handleyearchange(){
@@ -249,7 +282,12 @@
             var date = document.getElementById("date").value;
             var month = document.getElementById("month").value;
             var year = document.getElementById("year").value;
-            console.log(date, month, year);
+            var datearea =document.getElementById("datearea");
+            datearea.style.display="none";
+            const datelist=[date,month,year];
+            console.log(datelist);
+            var namearea = document.getElementById("namearea");
+            namearea.style.display="flex";
         }
         function clean(){
             var year = document.getElementById("year");
@@ -261,6 +299,40 @@
             date.disabled=true;
             btn.disabled=true;
         }
+        function namesubmit(){
+            var first_name =document.getElementById("first_name").value ;
+            var last_name = document.getElementById("last_name").value ;
+            const namelist= [first_name,last_name];
+            console.log(namelist);
+            var namearea = document.getElementById("namearea");
+            namearea.style.display="none";
+            var contactarea=document.getElementById("contactarea");
+            contactarea.style.display = "flex";
+        }
+        function contactubmit(){
+            var contactarea= document.getElementById("contactarea");
+            var contact =document.getElementById("phoneno").value;
+            var email =document.getElementById("email").value;
+            console.log(contact);
+            console.log(email);
+            contactarea.style.display="none";
+            var usernamearea =document.getElementById("usernamearea");
+            usernamearea.style.display="flex";
+        }
+        function usernamesubmit(){
+            var username =document.getElementById("username").value;
+            var usernamearea =document.getElementById("usernamearea");
+            usernamearea.style.display="none";
+            console.log(username);
+            var passwordarea =document.getElementById("passwordarea");
+            passwordarea.style.display="flex";
+        }
+        function passwordsubmit(){
+            var password=document.getElementById("password").value;
+            console.log(password);
+            window.open("/login","__self");
+        }
+        
     </script>
 </body>
 
