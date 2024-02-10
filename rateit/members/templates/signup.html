@@ -28,7 +28,9 @@
         font-size: 8vw;
         border-bottom: 1px solid black;
     }
-
+    .text{
+        font-family: 'Open Sans', sans-serif;
+    }
     .displayarea {
         margin: 30px 30px;
         padding: 20px 40px;
@@ -44,10 +46,12 @@
         margin: 10px 10px;
         width: 120px;
     }
-    input{
+
+    input {
         padding: 10px 10px;
         margin: 5px 5px;
     }
+
     button {
         margin: 5px 5px;
         padding: 10px 10px;
@@ -61,16 +65,26 @@
         background-color: black;
         color: white;
     }
-    #namearea{
+
+    #namearea {
         display: none;
     }
-    #contactarea{
+
+    #contactarea {
         display: none;
     }
-    #usernamearea{
+
+    #usernamearea {
         display: none;
     }
-    #passwordarea{
+
+    #passwordarea {
+        display: none;
+    }
+    #finalform{
+        display:none;
+    }
+    #finalsubmitdiv{
         display: none;
     }
 </style>
@@ -81,7 +95,7 @@
         <div class="displayarea" id="datearea">
             <p class="text">Select your Date Of Birth</p>
             <!-- year -->
-            <select name="year" id="year" onchange="handleyearchange()">
+            <select  id="year" onchange="handleyearchange()">
                 <option value=1950> 1950 </option>
                 <option value=1951> 1951 </option>
                 <option value=1952> 1952 </option>
@@ -159,7 +173,7 @@
                 <option value="2024">2024 </option>
             </select>
             <!-- month -->
-            <select name="month" id="month" onchange="handlemonthchange()" disabled>
+            <select  id="month" onchange="handlemonthchange()" disabled>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -175,7 +189,7 @@
 
             </select>
             <!-- date -->
-            <select name="date" id="date" disabled onchange="handledatechange()">
+            <select  id="date" disabled onchange="handledatechange()">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -212,32 +226,53 @@
             </select>
             <button onclick="dob()" disabled id="submit">Submit</button>
             <button onclick="clean()">Clear</button>
+            <p class="text">
+                Already have an account ? <a href="/login/">Signin</a>
+            </p>
         </div>
         <div class="displayarea" id="namearea">
-            <input type="text" name="first_name" placeholder="Enter your First Name" id="first_name">
-            <input type="text" name="last_name" placeholder="Enter yout Last Name" id="last_name">
+            <input type="text"  placeholder="Enter your First Name" id="first_name">
+            <input type="text" placeholder="Enter yout Last Name" id="last_name">
             <button onclick="namesubmit()">Submit</button>
         </div>
         <div class="displayarea" id="contactarea">
-            <input type="tel" name="phoneno" id="phoneno" placeholder="Enter your contact Number">
-            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <input type="tel"  id="phoneno" placeholder="Enter your contact Number">
+            <input type="email"  id="email" placeholder="Enter your email">
             <button onclick="contactubmit()">Submit</button>
         </div>
         <div class="displayarea" id="usernamearea">
-            <input type="text" placeholder="Create a username" id="username" name="username">
+            <input type="text" placeholder="Create a username" id="username" >
             <button onclick="usernamesubmit()">Submit</button>
         </div>
         <div class="displayarea" id="passwordarea">
-            <input type="password" name="password" id="password" placeholder="Enter Your password">
-            <button onclick="passwordsubmit()" >Submit</button>
+            <input type="password"  id="password" placeholder="Enter Your password">
+            <button onclick="passwordsubmit()">Submit</button>
         </div>
     </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="displayarea" id="finalform">
+            <input type="number" name="date" id="finaldate" placeholder="date">
+            <input type="number" name="month" id="finalmonth" placeholder="month">
+            <input type="number" name="year" id="finalyear" placeholder="year">
+            <input type="text" name="firstname" id="finalfirstname" placeholder="firstname">
+            <input type="text" name="lastname" id="finallastname" placeholder="lastname">
+            <input type="tel" name="phoneno" id="finalphoneno" placeholder="phonenumber">
+            <input type="email" name="email" id="finalemail" placeholder="email">
+            <input type="text" name="username" id="finalusername" placeholder="username">
+            <input type="password" name="password" id="finalpassword" placeholder="password">
+        </div>
+        <div class="displayarea" id="finalsubmitdiv">
+            <p>Agree <a href="#">Terms And Conditions</a> <input type="checkbox" name="" id=""></p>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
     <script>
-        function handleyearchange(){
+        function handleyearchange() {
             var month = document.getElementById("month");
             var year = document.getElementById("year");
-            month.disabled=false;
-            year.disabled=true;
+            month.disabled = false;
+            year.disabled = true;
         }
         function handlemonthchange() {
             var month = document.getElementById("month").value;
@@ -269,71 +304,90 @@
             }
             var date = document.getElementById("date");
             var month = document.getElementById("month");
-            date.disabled=false;
-            month.disabled=true;
+            date.disabled = false;
+            month.disabled = true;
         }
-        function handledatechange(){
+        function handledatechange() {
             var date = document.getElementById("date");
             var btn = document.getElementById("submit");
-            date.disabled=true;
-            btn.disabled=false;
+            date.disabled = true;
+            btn.disabled = false;
         }
         function dob() {
             var date = document.getElementById("date").value;
             var month = document.getElementById("month").value;
             var year = document.getElementById("year").value;
-            var datearea =document.getElementById("datearea");
-            datearea.style.display="none";
-            const datelist=[date,month,year];
+            var datearea = document.getElementById("datearea");
+            const finalyear = document.getElementById("finalyear");
+            const finalmonth = document.getElementById("finalmonth");
+            const finaldate = document.getElementById("finaldate");
+            finalyear.value = year;
+            finalmonth.value = month;
+            finaldate.value = date;
+            datearea.style.display = "none";
+            const datelist = [date, month, year];
             console.log(datelist);
             var namearea = document.getElementById("namearea");
-            namearea.style.display="flex";
+            namearea.style.display = "flex";
         }
-        function clean(){
+        function clean() {
             var year = document.getElementById("year");
-            var month =document.getElementById("month");
+            var month = document.getElementById("month");
             var date = document.getElementById("date");
             var btn = document.getElementById("submit");
-            year.disabled=false;
-            month.disabled=true;
-            date.disabled=true;
-            btn.disabled=true;
+            year.disabled = false;
+            month.disabled = true;
+            date.disabled = true;
+            btn.disabled = true;
         }
-        function namesubmit(){
-            var first_name =document.getElementById("first_name").value ;
-            var last_name = document.getElementById("last_name").value ;
-            const namelist= [first_name,last_name];
+        function namesubmit() {
+            var first_name = document.getElementById("first_name").value;
+            var last_name = document.getElementById("last_name").value;
+            const finalfirstname = document.getElementById("finalfirstname");
+            const finallastname = document.getElementById("finallastname");
+            finalfirstname.value = first_name;
+            finallastname.value = last_name;
+            const namelist = [first_name, last_name];
             console.log(namelist);
             var namearea = document.getElementById("namearea");
-            namearea.style.display="none";
-            var contactarea=document.getElementById("contactarea");
+            namearea.style.display = "none";
+            var contactarea = document.getElementById("contactarea");
             contactarea.style.display = "flex";
         }
-        function contactubmit(){
-            var contactarea= document.getElementById("contactarea");
-            var contact =document.getElementById("phoneno").value;
-            var email =document.getElementById("email").value;
+        function contactubmit() {
+            var contactarea = document.getElementById("contactarea");
+            var contact = document.getElementById("phoneno").value;
+            var email = document.getElementById("email").value;
+            const finalphoneno = document.getElementById("finalphoneno");
+            const finalemail = document.getElementById("finalemail");
+            finalphoneno.value = contact;
+            finalemail.value = email;
             console.log(contact);
             console.log(email);
-            contactarea.style.display="none";
-            var usernamearea =document.getElementById("usernamearea");
-            usernamearea.style.display="flex";
+            contactarea.style.display = "none";
+            var usernamearea = document.getElementById("usernamearea");
+            usernamearea.style.display = "flex";
         }
-        function usernamesubmit(){
-            var username =document.getElementById("username").value;
-            var usernamearea =document.getElementById("usernamearea");
-            usernamearea.style.display="none";
+        function usernamesubmit() {
+            var username = document.getElementById("username").value;
+            var usernamearea = document.getElementById("usernamearea");
+            const finalusername = document.getElementById("finalusername");
+            finalusername.value = username;
+            usernamearea.style.display = "none";
             console.log(username);
-            var passwordarea =document.getElementById("passwordarea");
-            passwordarea.style.display="flex";
+            var passwordarea = document.getElementById("passwordarea");
+            passwordarea.style.display = "flex";
         }
-        function passwordsubmit(){
-            var password=document.getElementById("password").value;
+        function passwordsubmit() {
+            var password = document.getElementById("password").value;
+            const passwordarea =document.getElementById("passwordarea");
+            const finalpassword = document.getElementById("finalpassword");
+            const finalsubmitdiv = document.getElementById("finalsubmitdiv");
+            finalpassword.value = password;
             console.log(password);
-            window.open("/login","__self");
+            finalsubmitdiv.style.display = "flex";
+            passwordarea.style.display="none";
         }
-        
     </script>
 </body>
-
 </html>
