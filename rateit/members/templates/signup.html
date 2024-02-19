@@ -93,6 +93,10 @@
     <div class="container">
         <h1 class="logo">Rateit</h1>
         <div class="displayarea" id="datearea">
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {% endif %}
+
             <p class="text">Select your Date Of Birth</p>
             <!-- year -->
             <select  id="year" onchange="handleyearchange()">
@@ -241,6 +245,7 @@
             <button onclick="contactubmit()">Submit</button>
         </div>
         <div class="displayarea" id="usernamearea">
+            <p id="username-error" style="color: red;"></p>
             <input type="text" placeholder="Create a username" id="username" >
             <button onclick="usernamesubmit()">Submit</button>
         </div>
@@ -257,12 +262,15 @@
             <input type="number" name="year" id="finalyear" placeholder="year">
             <input type="text" name="firstname" id="finalfirstname" placeholder="firstname">
             <input type="text" name="lastname" id="finallastname" placeholder="lastname">
-            <input type="tel" name="phoneno" id="finalphoneno" placeholder="phonenumber">
+            <input type="tel" name="contact" id="finalphoneno" placeholder="phonenumber">
             <input type="email" name="email" id="finalemail" placeholder="email">
             <input type="text" name="username" id="finalusername" placeholder="username">
             <input type="password" name="password" id="finalpassword" placeholder="password">
         </div>
         <div class="displayarea" id="finalsubmitdiv">
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {% endif %}
             <p>Agree <a href="#">Terms And Conditions</a> <input type="checkbox" name="" id=""></p>
             <button type="submit">Submit</button>
         </div>
@@ -389,5 +397,34 @@
             passwordarea.style.display="none";
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#username').on('input', function() {
+            var username = $(this).val();
+            if (username) {
+                $.ajax({
+                    url: '{% url 'check_username_availability' %}',
+                    data: {
+                        'username': username
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.available) {
+                            $('#username-error').text('');
+                        } else {
+                            $('#username-error').text('Username is already taken. Please choose a different username.');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+
+
 </body>
 </html>
