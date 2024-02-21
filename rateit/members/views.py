@@ -5,6 +5,7 @@ from .models import CustomUser
 # from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -13,6 +14,28 @@ def home(request):
 
 def sign_in(request):
     return render(request,"login.html")
+
+def loggingin(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Authenticate user
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # Login the user
+            login(request, user)
+            # Redirect the user to the home page
+            return redirect('home')  # Assuming 'home' is the name of the URL pattern for the home page
+        else:
+            # Authentication failed
+            messages.error(request, 'Invalid username or password.')
+            # Redirect back to the login page
+            return redirect('login')  # Assuming 'sign_in' is the name of the URL pattern for the login page
+
+    # If the request method is not POST, simply redirect to the login page
+    return redirect('login')  # Assuming 'sign_in' is the name of the URL pattern for the login page
 
 def sign_up(request):
     return render(request,'signup.html')
