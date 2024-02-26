@@ -27,7 +27,7 @@ def loggingin(request):
             # Login the user
             login(request, user)
             # Redirect the user to the home page
-            return redirect('home')  # Assuming 'home' is the name of the URL pattern for the home page
+            return redirect('/land/')  # Assuming 'home' is the name of the URL pattern for the home page
         else:
             # Authentication failed
             messages.error(request, 'Invalid username or password.')
