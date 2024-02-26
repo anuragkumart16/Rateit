@@ -5,7 +5,8 @@ from .models import CustomUser
 # from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
+
 
 # Create your views here.
 
@@ -87,6 +88,11 @@ def register(request):
     else:
         return render(request, 'signup.html')
 
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a desired page after logging out
+    return redirect('login/')  # Replace 'home' with the name of the URL pattern you want to redirect to
 
 
 def check_username_availability(request):
