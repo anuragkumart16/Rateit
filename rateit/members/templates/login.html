@@ -61,16 +61,22 @@
 </head>
 <body>
     <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
         <h1>Rateit</h1>
         <h3 class="text">Login</h3>
-        <form action="POST"></form>
+        <form action="loggingin" method="post">
+            {% csrf_token %}
         <div class="inputandbtnholder">
             <input type="text" class="text" name="username" placeholder="Enter Your Username">
             <input type="password" class="text" name="password" placeholder="Enter your Password">
             <button class="text" type="submit" onclick="profiles()">Login</button>
         </div>
         </form>
-        <p class="text">Don't have Account?<a href="signup/">Signup</a></p>
+        <p class="text">Don't have Account?<a href="{% url 'signup'%}">Signup</a></p>
     </div>
     <script>
        function profiles() {
