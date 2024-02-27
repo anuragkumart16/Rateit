@@ -1,0 +1,156 @@
+*{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.box{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 1px 0px;
+}
+.menu{
+    /* border: solid 1px black; */
+    width: 25vw;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100vh;
+}
+.row{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 4px;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    margin: 7px 20px;
+    padding: 2vh 2vw;
+    box-shadow: 0px 0px 1px 0px;
+    /* border-radius: 5px; */
+}
+li:hover{
+    background-color: rgb(243, 243, 243);
+    /* padding: 2vh 2.1vw; */
+}
+#cmdholder{
+    padding-bottom: 5px;
+    border-bottom: 1px solid grey;
+}
+#more{
+    padding: 0px 0px;
+    margin: 3px 5px;
+}
+.feed{
+    width: 50vw;
+    margin: 0px 5px;
+    margin-left: 25vw;
+}
+.storyholder{
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 10px;
+    
+}
+.storyholder span{
+    margin: 5px 10px;
+}
+.card{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    margin: 30px 30px;
+    box-shadow: 0px 0px 1px 0px;
+    padding:  20px 20px;
+    overflow: auto;
+    border-radius: 5px;
+}
+.nameholder{
+    float: left;
+}
+.img{
+    overflow: hidden;
+    height: 85vh;
+    width: 40vw ;
+}
+.img img{
+    width: 100%; /* occupy full width of the container */
+    height: 100%; /* occupy full height of the container */
+    object-fit: cover; /* cover the container without distortion */
+}
+.rate{
+    display: flex;
+    margin: 15px 0px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+.rate span{
+    margin-right: 10px;
+}
+.suggestions{
+    width: 25vw;
+    padding: 10px 10px;
+    overflow-y: scroll;
+    height: 100vh;
+    position: fixed;
+    left: 75vw;
+}
+
+.section{
+    padding: 10px 10px;
+    border-bottom: 1px solid grey;
+    /* margin-bottom: 10px; */
+    
+}
+
+.friendcard{
+    border: 1px solid rgb(182, 181, 181);
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 0px;
+    justify-content: center;
+    margin: 5px 0px;
+}
+.btn-success , .btn-secondary, .btn-primary{
+    background-color: white;
+    border: 1px solid rgb(148, 148, 148);
+    margin: 5px 5px;
+    padding: 7px 7px;
+    /* width: 70px; */
+    border-radius: 3px;
+}
+.btn-primary:hover{
+    background-color: black;
+    color: white;
+}
+.btn-secondary:hover{
+    background-color: rgb(212, 211, 208);
+}
+.btn-success:hover{
+    background-color: rgb(18, 165, 67);
+    color: white;
+}
+
+.suggcard{
+    margin: 5px 0px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(182, 181, 181);
+}
+.holder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}

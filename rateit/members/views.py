@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from .models import CustomUser
-# from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
+
 
 # Create your views here.
 
@@ -27,7 +27,7 @@ def loggingin(request):
             # Login the user
             login(request, user)
             # Redirect the user to the home page
-            return redirect('home')  # Assuming 'home' is the name of the URL pattern for the home page
+            return redirect('/land/')  # Assuming 'home' is the name of the URL pattern for the home page
         else:
             # Authentication failed
             messages.error(request, 'Invalid username or password.')
@@ -87,6 +87,11 @@ def register(request):
     else:
         return render(request, 'signup.html')
 
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a desired page after logging out
+    return redirect('signin')  # Replace 'home' with the name of the URL pattern you want to redirect to
 
 
 def check_username_availability(request):
