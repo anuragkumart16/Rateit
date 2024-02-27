@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     
 ]
 EXTERNAL_APPS=[
-    'members','profiles',
 
+    'members','profiles'
 ]
 
 INSTALLED_APPS= INSTALLED_APPS + EXTERNAL_APPS

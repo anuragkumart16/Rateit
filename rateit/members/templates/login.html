@@ -73,13 +73,15 @@
         <div class="inputandbtnholder">
             <input type="text" class="text" name="username" placeholder="Enter Your Username">
             <input type="password" class="text" name="password" placeholder="Enter your Password">
-            <button class="text" type="submit">Login</button>
+            <button class="text" type="submit" onclick="profiles()">Login</button>
         </div>
         </form>
         <p class="text">Don't have Account?<a href="{% url 'signup'%}">Signup</a></p>
     </div>
     <script>
-
+       function profiles() {
+        window.open('/profiles', '_self');
+       }
     </script>
 </body>
 </html>
