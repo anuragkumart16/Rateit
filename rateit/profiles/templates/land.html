@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/land.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/text.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/elements.css' %}">
     <!-- icons -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -24,8 +25,15 @@
     {% comment %} included suggestions here {% endcomment %}
     {% include "suggestions.html" %}
 
+    {% comment %} included explore here and its display would be none {% endcomment %}
+    {% include "explore.html" %}
 
-    <script src="{% static 'profiles/menu.js'%}"></script>
+    {% comment %} included profile here and its display would be none {% endcomment %}
+    {% include "profile.html" %}
+
+    {% comment %} included reels here and its display would be none {% endcomment %}
+    {% include "reels.html" %}
+    <script src="{% static 'profiles/js/menuelements.js'%}"></script>
 </body>
 
 

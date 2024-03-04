@@ -22,7 +22,7 @@ def loggingin(request):
 
         # Authenticate user
         user = authenticate(request, username=username, password=password)
-
+        print(username,password)
         if user is not None:
             # Login the user
             login(request, user)
@@ -32,10 +32,10 @@ def loggingin(request):
             # Authentication failed
             messages.error(request, 'Invalid username or password.')
             # Redirect back to the login page
-            return redirect('login')  # Assuming 'sign_in' is the name of the URL pattern for the login page
+            return redirect('signin')  # Assuming 'sign_in' is the name of the URL pattern for the login page
 
     # If the request method is not POST, simply redirect to the login page
-    return redirect('login')  # Assuming 'sign_in' is the name of the URL pattern for the login page
+    return redirect('signin')  # Assuming 'sign_in' is the name of the URL pattern for the login page
 
 def sign_up(request):
     return render(request,'signup.html')
@@ -73,6 +73,7 @@ def register(request):
             username=username,
             email=email,
             password=make_password(password),  # Hash the password
+            # password=password,
             first_name=first_name,
             last_name=last_name,
             date_of_birth=date_of_birth,

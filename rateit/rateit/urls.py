@@ -14,7 +14,7 @@ urlpatterns = [
     path('signup/', sign_up, name='signup'),
     path('signup/register/', register, name='register'),
     path('check-username-availability/', check_username_availability, name='check_username_availability'),
-    path('logout/',logout_view,name="logout"),
+    path('logout',logout_view,name="logout"),
 
     # profiles url
     path('land/',land,name="landingpage"),

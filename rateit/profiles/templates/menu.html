@@ -1,4 +1,3 @@
-
 <div class="menu box">
     <div class="logodiv">
         <a href="{%url 'home'%}">
@@ -6,6 +5,46 @@
         </a>
     </div>
     <div id="cmdholder">
+        <!-- search div -->
+        <div class="model" id="search">
+            <span class="material-symbols-outlined close" onclick="searchclose()">
+                close
+            </span>
+            <h1 class="superheading">Search</h1>
+            <input type="text" placeholder="Search Here" class="searchinput">
+            <hr>
+            <h3>Recent</h3>
+        </div>
+        <!-- create div -->
+        <div class="model" id="create">
+            <span class="material-symbols-outlined closecreate" onclick="createclose()">
+                close
+            </span>
+            <h1>Create</h1>
+            <ul>
+                <li><p class="text">Post</p></li>
+                <li><p class="text">Story</p></li>
+            </ul>
+        </div>
+
+        <!-- notification div -->
+        <div class="model" id="notification">
+            <span class="material-symbols-outlined close" onclick="notificationclose()">
+                close
+            </span>
+            <h1 class="superheading">Notification</h1>
+        </div>
+
+        <!-- more div -->
+        <div  id="morediv">
+            <ul>
+                <a href="{% url 'logout'%}"><li><p class="text">Logout</p></li></a>
+                <a href=""><li><p class="text">Settings</p></li></a>
+            </ul>
+        </div>
+
+
+
         <ul>
             <a href="">
                 <li class="row">
@@ -15,29 +54,30 @@
                     <p class="text"> Home </p>
                 </li>
             </a>
-            <a href="">
-                <li class="row">
-                    <span class="material-symbols-outlined" id="home">
-                        search
-                    </span>
-                    <p class="text"> Search </p>
-                </li>
-            </a>
-            <a href="">
-                <li class="row"><span class="material-symbols-outlined" id="home">
-                        explore
-                    </span>
-                    <p class="text"> Explore </p>
-                </li>
-            </a>
-            <a href="">
-                <li class="row">
-                    <span class="material-symbols-outlined" id="home">
-                        play_arrow
-                    </span>
-                    <p class="text"> Reels </p>
-                </li>
-            </a>
+
+            <li class="row" id="searchopen" onclick="search_open()">
+                <span class="material-symbols-outlined" id="home">
+                    search
+                </span>
+                <p class="text"> Search </p>
+            </li>
+
+
+
+            <li class="row" onclick="explore()"><span class="material-symbols-outlined" id="home">
+                    explore
+                </span>
+                <p class="text"> Explore </p>
+            </li>
+
+
+            <li class="row" onclick="reels()">
+                <span class="material-symbols-outlined" id="home">
+                    play_arrow
+                </span>
+                <p class="text"> Reels </p>
+            </li>
+
             <a href="">
                 <li class="row">
                     <span class="material-symbols-outlined" id="home">
@@ -46,33 +86,33 @@
                     <p class="text"> Messages </p>
                 </li>
             </a>
-            <a href="">
-                <li class="row">
+            
+                <li class="row" onclick="opennotification()">
                     <span class="material-symbols-outlined" id="home">
                         notifications
                     </span>
                     <p class="text"> Notification </p>
                 </li>
-            </a>
-            <a href="">
-                <li class="row"><span class="material-symbols-outlined" id="home">
-                        add_circle
-                    </span>
-                    <p class="text"> Create </p>
-                </li>
-            </a>
-            <a href="">
-                <li class="row">
+            
+
+            <li class="row" onclick="opencreate()"><span class="material-symbols-outlined" id="home">
+                    add_circle
+                </span>
+                <p class="text"> Create </p>
+            </li>
+
+            
+                <li class="row" onclick="profile()">
                     <span class="material-symbols-outlined" id="home">
                         account_circle
                     </span>
                     <p class="text"> Profile </p>
                 </li>
-            </a>
+            
         </ul>
     </div>
-    
-    <div class="row" id="more">
+
+    <div class="row" id="more" onclick="openmore()">
         <span class="material-symbols-outlined" id="home">
             menu
         </span>

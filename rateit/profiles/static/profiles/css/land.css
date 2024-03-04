@@ -21,6 +21,7 @@ body{
     position: fixed;
     overflow-y: scroll;
     height: 100vh;
+    z-index: 0;
 }
 .row{
     display: flex;
